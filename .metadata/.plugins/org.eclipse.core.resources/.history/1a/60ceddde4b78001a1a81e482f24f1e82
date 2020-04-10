@@ -1,0 +1,20 @@
+package Datatypes;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		IDatatypes datatype = new Stack();
+		
+		System.out.println(datatype.toString());
+		
+		datatype.push(1);
+		datatype.push(1);
+		
+		System.out.println(datatype.toString());
+		
+		datatype.pop();
+		
+		System.out.println(datatype.toString());
+	}
+	
+}

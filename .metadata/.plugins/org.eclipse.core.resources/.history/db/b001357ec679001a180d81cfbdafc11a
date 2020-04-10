@@ -1,0 +1,24 @@
+package Datatypes;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class Main {
+	
+	
+	public static void main(String[] args) {
+		IDatatypes myStack = new Stack();
+		
+		Scanner userObj = new Scanner(System.in);
+		System.out.println("Enter what is to be calculated");
+
+		String userInput = userObj.nextLine();
+		System.out.println("You have entered: " + userInput);
+		
+        String x = JOptionPane.showInputDialog("Tokens");
+        StringTokenizer str = new StringTokenizer(x);
+
+		
+		for (char c : userInput.toCharArray()) {}
+		}	
+	}
+}

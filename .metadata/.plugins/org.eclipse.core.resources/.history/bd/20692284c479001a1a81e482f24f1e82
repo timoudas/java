@@ -1,0 +1,37 @@
+package Datatypes;
+import java.util.Scanner;
+public class Main {
+	
+	
+	public static void main(String[] args) {
+		IDatatypes myStack = new Stack();
+		
+		Scanner userObj = new Scanner(System.in);
+		System.out.println("Enter what is to be calculated");
+
+		String userInput = userObj.nextLine();
+		System.out.println("You have entered: " + userInput);
+
+		
+		for (int c : userInput.toCharArray()) {
+			try{
+				int x = Integer.parseInt(c);
+				myStack.push(x);
+			}
+			catch (NumberFormatException e) {
+				if(c=="+") {
+					myStack.push(+);
+				}
+				else if(c=="-") {
+					myStack.push(-);
+				}
+				else if(c=="*") {
+					myStack.push(*);
+				}
+				else if(c=="/") {
+					myStack.push(/);
+				}
+			}
+		}	
+	}
+}
