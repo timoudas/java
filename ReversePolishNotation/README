@@ -1,0 +1,4 @@
+HUR DU KÖR PROGRAMMET
+
+Öppna terminalen och ställ dig i samma mapp som Calc.java
+kör java -jar Calc.jar
