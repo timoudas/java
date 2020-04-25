@@ -3,7 +3,6 @@ package Courseinfo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class CourseInfo {
@@ -44,7 +43,7 @@ public class CourseInfo {
 		    courses.insert(data[0], data[1], Double.parseDouble(data[2]));
 		}
 		csvReader.close();
-		}catch(IOException ex){
+		} catch(IOException ex){
 			System.out.println(ex);
 		}
 		
@@ -56,6 +55,10 @@ public class CourseInfo {
 		System.out.println("CourseCode: " + code);
 		System.out.println("Coursename: " + name);
 		System.out.println("Coursename: " + cred);
+		
+        for (BSTNode node : courses) {
+            System.out.println(node.getCourseCode());
+        }
 
 	}
 }

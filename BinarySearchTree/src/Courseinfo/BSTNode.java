@@ -57,10 +57,4 @@ public class BSTNode {
 		return right;
 	}
 	
-	public int key() {
-		return getCourseCode().hashCode();
-	}
-
-
-
 }
