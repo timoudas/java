@@ -4,6 +4,7 @@ package Courseinfo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class CourseInfo {
 
@@ -55,9 +56,11 @@ public class CourseInfo {
 		System.out.println("CourseCode: " + code);
 		System.out.println("Coursename: " + name);
 		System.out.println("Coursename: " + cred);
+		Iterator<BSTNode> iter = courses.iterator();
+         
 		
-        for (BSTNode node : courses) {
-            System.out.println(node.getCourseCode());
+		while (iter.hasNext()) {
+            System.out.println("Works");
         }
 
 	}

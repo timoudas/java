@@ -7,7 +7,7 @@ import java.util.Iterator;
  * Store course information in a binary search tree
  *
  */
-class BinarySearchTree implements Iterable<BSTNode> {
+class BinarySearchTree {
 	
 	
 	
@@ -134,7 +134,18 @@ class BinarySearchTree implements Iterable<BSTNode> {
 
 
 	private class BSTIterator implements Iterator<BSTNode> {
-		BSTNode root=null;
+
+		//private BSTNode root = null;
+		
+		public BSTIterator() {
+            if (root != null) {
+            	System.out.println("here");
+                root = root.getLeftChild();
+            } else {
+            	System.out.println("there");
+                root = root;
+            }
+		}
 		
 		public boolean hasNext() {
 			return root != null;
@@ -143,11 +154,9 @@ class BinarySearchTree implements Iterable<BSTNode> {
 		public BSTNode next() {
 			if(root.getLeftChild() != null) {
 				root = root.getLeftChild();
-				System.out.println(root.getCourseCode());
 			}else {
 				if (root.getRightChild() != null) {
 				root= root.getRightChild();
-				System.out.println(root.getCourseCode());
 				}
 			}	
 			return root;
