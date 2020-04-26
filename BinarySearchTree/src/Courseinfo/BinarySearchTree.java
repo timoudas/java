@@ -1,5 +1,5 @@
 package Courseinfo;
-
+import java.util.Stack;
 import java.util.Iterator;
 
 
@@ -7,7 +7,7 @@ import java.util.Iterator;
  * Store course information in a binary search tree
  *
  */
-class BinarySearchTree {
+class BinarySearchTree implements Iterable<BSTNode> {
 	
 	
 	
@@ -33,6 +33,7 @@ class BinarySearchTree {
 	 */
 
 	public void insert(String courseCode, String courseName, double courseCredits) {
+		size++;
 		BSTNode node = new BSTNode(courseCode, courseName, courseCredits);
 		root = insert(root, node); // Call to private method with the same name, but other parameters
 	}
@@ -50,7 +51,7 @@ class BinarySearchTree {
 	private BSTNode insert(BSTNode root, BSTNode node) {
 		if (root==null) {
 			//System.out.println("Root is not set " + node.getCourseCode());
-			size++;
+			//size++;
 			return node; // The easy case. Let the current node be the root of a new (sub?)tree.
 		} else {
 			String currentKey = root.getCourseCode();
@@ -65,7 +66,7 @@ class BinarySearchTree {
 				if (left == null) {
 					root.setLeftChild(node);
 					//System.out.println("Placed it " + node.getCourseCode());
-					size++;
+					//size++;
 				} else {
 					//System.out.println("Still looking " + node.getCourseCode());
 					left = insert(left, node);
@@ -74,7 +75,7 @@ class BinarySearchTree {
 				if (right == null) {
 					root.setRightChild(node);
 					//System.out.println("Placed it " + node.getCourseCode());
-					size++;
+					//size++;
 				} else {
 					//System.out.println("Still looking " + node.getCourseCode());
 					left = insert(right, node);
@@ -90,7 +91,7 @@ class BinarySearchTree {
 	 */
 
 	public int size() {
-		return size; // Dummy return value, to make it compile. Should be replace with proper algorithm.
+		return size;
 	}
 
 	/**
@@ -128,37 +129,37 @@ class BinarySearchTree {
 		}
 	}
 	
+	//ITERATOR INTERFACE
     public Iterator<BSTNode> iterator() {
         return new BSTIterator();
     }
 
-
+    //ITERATOR
 	private class BSTIterator implements Iterator<BSTNode> {
 
 		//private BSTNode root = null;
-		
+		private Stack<BSTNode> stack;
+			
+
 		public BSTIterator() {
-            if (root != null) {
-            	System.out.println("here");
-                root = root.getLeftChild();
-            } else {
-            	System.out.println("there");
-                root = root;
-            }
+			stack = new Stack<>();
+			pushAll(root);
+		}
+		
+		private void pushAll(BSTNode root) {
+			while(root!=null) {
+				stack.push(root);
+				root = root.getLeftChild();
+			}
 		}
 		
 		public boolean hasNext() {
-			return root != null;
+			return !stack.isEmpty();
 			}
 		
 		public BSTNode next() {
-			if(root.getLeftChild() != null) {
-				root = root.getLeftChild();
-			}else {
-				if (root.getRightChild() != null) {
-				root= root.getRightChild();
-				}
-			}	
+			BSTNode root = stack.pop();
+			pushAll(root.getRightChild());
 			return root;
 		}
 	
