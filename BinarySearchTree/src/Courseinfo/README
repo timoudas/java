@@ -1,0 +1,7 @@
+Moduler
+BSTNode.java -> innehåller klassen för BSTNodes
+BinarySearchTree -> innehåller klassen för the Binära sökträdet
+samt klassen med iteratorn
+Courseinfo.java -> Innehåller klassen där Binära sökträdet och dess funktioner testas. Detta är alltså Main.
+
+För att köra: Öppna i Eclipsee och kör där eller, 

@@ -39,8 +39,8 @@ public class CourseInfo {
          
 		//Iter over nodes
 		for (BSTNode node : courses) {
-            System.out.println(node.getCourseName());
+            System.out.println("THIS IS THE NODE " + node.getCourseName());
         }
-
+	
 	}
 }

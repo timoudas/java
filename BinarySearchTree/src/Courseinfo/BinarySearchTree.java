@@ -153,15 +153,17 @@ class BinarySearchTree implements Iterable<BSTNode> {
 			}
 		}
 		
+		public BSTNode next() {
+			BSTNode node = stack.pop();
+			pushAll(node.getRightChild());
+			return node;
+		}
+		
 		public boolean hasNext() {
 			return !stack.isEmpty();
 			}
 		
-		public BSTNode next() {
-			BSTNode root = stack.pop();
-			pushAll(root.getRightChild());
-			return root;
-		}
+
 	
 	}
 }
