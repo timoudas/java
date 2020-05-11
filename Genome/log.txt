@@ -20,3 +20,23 @@ Then check column 0 and 1 against the Hashmap and change their values. Should ta
 2. Read the data into ArrayList
 3. Loop through the Arraylist and check index 0 and 1 against the Hashmap
 4. Profit
+
+A bit tideous but I seem to have succesfully loaded my test file into a Graph structure. Only thing remaining is to check overlap on contigs to exclude edges.
+
+The process is as following:
+
+Constructor: Takes one argument: A filename that contains the nodes
+
+The construtor calls on ParseData(String filename) that does the following:
+
+1. Initiates the adj_list with number of _vertices that the Graph is expeted to have. 
+
+2. LoadIdentifiers() loads the file and adds all unique Identifiers it can find in the file into an ArrayList and returns the list.
+
+3.ParseIdentifiers() takes the ArrayList of Identifiers and instanciates a Hashmap where every Identifier is mapped against a unique initiger. The function returns the Hashmap with the mapped Identifiers.
+
+4. BuildGraph() takes the Hashmap and the filename. It reads the filename and checks the Identifiers against the Hashmap, if it finds the Identifiers it changes them against their unique Integer and adds an Edge(u,v) where u,v are integers. When Edge() is called it first calls on checkElem() that checks if the node (u,v) exists already. If it exists it returns True else False. If it returns False and u != v then the node is added into the Adjecancy matrix. This is to avoid dublicates.
+
+#TODO
+
+Check the overlaps of the contigs and exlude those that have overlap.

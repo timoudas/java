@@ -18,8 +18,8 @@ public class Graph {
 	static int _vertices;
 	ArrayList<ArrayList<Integer>> adj_list;
 	
-	public Graph() {
-		
+	public Graph(String filename) {
+		ParseData(filename);
 	}
 	
 	/*
@@ -49,15 +49,10 @@ public class Graph {
 		return Identifiers;
 	}
 	
-	public ArrayList<ArrayList<Integer>> ParseData() {
-		adj_list = new ArrayList<ArrayList<Integer>>(_vertices);
-		
-	}
-	
 	/*
 	 * Parse the Identiers into unique integers and map them in a HashMap
 	 */
-	private HashMap<String, Integer> ParseIdentifers(ArrayList<String> Identifiers) {
+	private HashMap<String, Integer> ParseIdentifiers(ArrayList<String> Identifiers) {
 		HashMap<String, Integer> IDs = new HashMap<String, Integer>();
 		int IntID = 0;
 		for (String id : Identifiers) {
@@ -68,13 +63,80 @@ public class Graph {
 		return IDs;
 	}
 	
-	public static void main(String[] args) {
-		Graph graph = new Graph();
-		String[] data = graph.ParseData("/Users/andreas/eclipse-workspace/Genome/data/test.txt");
-		for(String s: data) {
-			out.println(s);
+	public void addEdge(int u, int v) {
+		adj_list.get(u).add(v);
+		adj_list.get(v).add(u); 
+	}
+	
+	public void Edge(int u, int v) {
+		if (checkElem(adj_list, v, u) == false && u != v){
+			addEdge(v, u);
 		}
 	}
-		
+	
+    private boolean checkElem(ArrayList<ArrayList<Integer>> arr, int vertex, int node) {
+    	ArrayList<Integer> temp = arr.get(vertex);
+    	if(temp.contains(node)){
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+	
+	private ArrayList<ArrayList<Integer>> BuildGraph(HashMap<String, Integer> ParsedIds, String filename){
+		int vertexU = 0;
+		int vertexV = 0;
+        for (int i = 0; i < _vertices; i++) {
+        	adj_list.add(new ArrayList<Integer>());
+        }
+		try {
+			String path = filename;
+			BufferedReader Genomefile = new BufferedReader(new FileReader(path));
+			while ((row = Genomefile.readLine()) != null) {
+			    String[] data = row.split("\t");
+			    if (ParsedIds.containsKey(data[0])) {
+			    	vertexU = ParsedIds.get(data[0]);
+			    }
+			    if (ParsedIds.containsKey(data[1])) {
+			    	vertexV = ParsedIds.get(data[1]);
+			    }
+			    Edge(vertexU, vertexV);
+			    
+			}
+			Genomefile.close();
+		} catch(IOException ex){
+		System.out.println(ex);
+		}
+		return adj_list;
+	}
+	
+	public ArrayList<ArrayList<Integer>> ParseData(String filename) {
+		adj_list = new ArrayList<ArrayList<Integer>>(_vertices);
+		ArrayList<String> fileIds = LoadIdentifiers(filename);
+		HashMap<String, Integer> ParsedIds = ParseIdentifiers(fileIds);
+		System.out.println(Collections.singletonList(ParsedIds)); // method 2
+		ArrayList<ArrayList<Integer>> graph = BuildGraph(ParsedIds, filename);
+		return graph;
+	}
+	
+    public void printGraph() { 
 
+        for (int i = 0; i < adj_list.size(); i++) { 
+            System.out.println("\nAdjacency list of vertex " + i); 
+            for (int j = 0; j < adj_list.get(i).size(); j++) { 
+                System.out.print(" -> "+adj_list.get(i).get(j)); 
+            } 
+            System.out.println(); 
+        } 
+    }
+	
+
+
+	
+	public static void main(String[] args) {
+		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/test.txt");
+		graph.printGraph();
+		
+	}
 }
+		
