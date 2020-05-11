@@ -8,3 +8,15 @@ Downloaded dataset and created folder data/
 Used unix to create a small test suite be doing:
 
 head -10 > test.txt
+
+HOW TO CHANGE VERTEX IDs
+
+Bit of a problem. Each row has to be treated as a node in the Graph meaning it's properties has to be preserved. 
+
+Possible solution is to store the unique IDs in a Hashmap and map them to integer IDs.
+Then check column 0 and 1 against the Hashmap and change their values. Should take some timesince this cannot be done inplace.
+
+1. Read the identifiers into a Hashmap and map them against integers.
+2. Read the data into ArrayList
+3. Loop through the Arraylist and check index 0 and 1 against the Hashmap
+4. Profit
