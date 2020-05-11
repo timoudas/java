@@ -1,0 +1,11 @@
+Graph.java
+
+This is a class containing the data structure for the graphs
+
+GraphIO.java
+
+This class reads a txt file with nodes into a graph object
+
+RandGraoh.io
+
+This class investigates the diameter of a graph
