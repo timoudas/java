@@ -10,14 +10,14 @@ Implement a Stack and Interface for the stack to calculate standard expressions 
 
 Create a BST and implemented an interface for Iterable to enable traversal through standar for loop expression. 
 
-##Heap
+## Heap
 
 Implement Max-Heap datastructure and methods to insert elements to the Heap, maintain the Heap and extract max-value from Heap.
 
-##Graph
+## Graph
 
 Create a Graph datastructure 
 
-##Genome
+## Genome
 
 Project to investigate pine genome assembly
