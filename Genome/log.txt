@@ -40,3 +40,9 @@ The construtor calls on ParseData(String filename) that does the following:
 #TODO
 
 Check the overlaps of the contigs and exlude those that have overlap.
+
+#LATER VALIDATION
+
+Nummer of vertices can later be validated against doing UNIX-operation
+
+#UNKNOWN UNIX-Op
