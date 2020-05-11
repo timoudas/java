@@ -1,0 +1,10 @@
+LOG FOR GENOME PROJECT
+
+11/05
+
+Cloned repo to statinary computer since dataset is 7gb... means not able to utilize my 60gb MacBook Air... Thank you Lars now I HAVE to sit on my desk
+
+Downloaded dataset and created folder data/
+Used unix to create a small test suite be doing:
+
+head -10 > test.txt
