@@ -126,7 +126,7 @@ public class Graph {
     }
 		
 	public static void main(String[] args) {
-		Graph graph = new Graph(10, 0.4);
+		Graph graph = new Graph(10, 0.6);
 		graph.printGraph();
 		int vertex = 0;
 		ArrayList<Integer> vertex_dist = graph.distance(vertex);

@@ -59,5 +59,6 @@ public class GraphIO {
 		graph.printGraph();
 		graph.distance(0);
 		
+		
 	}
 }
