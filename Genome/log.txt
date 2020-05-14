@@ -46,3 +46,46 @@ Check the overlaps of the contigs and exlude those that have overlap.
 Nummer of vertices can later be validated against doing UNIX-operation
 
 #UNKNOWN UNIX-Op
+
+Diskussed with Edvin regarding the reading of the file of 7GB and concluded that file should not be read direclty in java and beated into shape while in memory.A better solution is to wrangle the data with the help of UNIX awk and concatenate the "true" file before reading it.
+
+
+Below script checks if the overlapp of first contig is the same as the length of the first contig
+awk '$7-$6==$8 {print $7-$6, $8}' test.txt
+
+How I interpret the logic:
+
+#FIRST STATEMENT
+For example, if columns 6, 7, and 8 are indicating the whole contig is involved in the overlap, then this line can be ignored: it should not define an edge. 
+
+This means that if awk '$7-$6==$8 {print $7-$6, $8}' test.txt holds true than that line should be disregarded
+
+#SECOND STATEMENT
+Columns 6-8 and 10-12 describes the overlap. It the overlap is actually containment — if contig A is a subsequence of contig B — then A should be discarded because it is redundant.
+
+This is really fuzzy... But It means the same thing as the first statement
+
+Lars comment: "No. If A has length 4711 and the coordinates indicate that the overlap starts at position 0 and ends at position 4711, then all of A is in the overlap, meaning that B contains A.
+... and A can be disregarded"
+
+Conclusion: if 7 - 6 = 8 then we remove A; If 11 - 10 = 12 then we remove B;
+
+Logic to build:
+
+for line in fie:
+    If $7-$6==$8:
+	remove row and $1
+    elif $11-$10$==$12:
+	remove row and $2
+
+How:
+   * Iterate file and cat a new file containg all redundand contigs
+   * Iterate file and check if contigs are in file containg redundant contigs
+     and remove all lines where condition holds True
+   * Profit
+   * Now we have a smaller file hopefully
+
+
+
+
+

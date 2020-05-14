@@ -11,6 +11,15 @@ import static java.lang.System.out;
  * Columns 1 and 2 are vertex identifiers, so each line is a potential edge. 
  * Columns 6-8 and 10-12 describes the overlap. It the overlap is actually containment 
  * If contig A is a subsequence of contig B — then A should be discarded because it is redundant.
+ * 
+ * Contig: segment av dna
+ * Rad: Beskriver en overlap
+ * 6,7: Start/End of overlap in first contig
+ * 8: Length of first contig
+ * 1 (6,7) raden går inte över hela
+ * 1 (10,11) fullständig overlap
+ *
+ * ---> kolla (6,7,8) & (10,11 12) om någon är overlap: ta bort, annars behåll
  */
 
 public class Graph {
@@ -138,5 +147,16 @@ public class Graph {
 		graph.printGraph();
 		
 	}
+	
+	/**
+	 * Contig: segment av dna
+	Rad: Beskriver en overlap
+	6,7: Start/End of overlap in first contig
+	8: Length of first contig
+	1 (6,7) raden går inte över hela
+	1 (10,11) fullständig overlap
+
+	---> kolla (6,7,8) & (10,11 12) om någon är overlap: ta bort, annars behåll
+	**/
 }
-		
+	
