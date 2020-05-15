@@ -140,7 +140,7 @@ public class Graph {
     }
     
     public void PrintNodeDist() {
-    		out.println(Arrays.toString(NodeDegreeDist()));
+    	out.println(Arrays.toString(NodeDegreeDist()));
     }
     
     private int[] NodeDegreeDist() {
