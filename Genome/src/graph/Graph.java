@@ -138,13 +138,43 @@ public class Graph {
             System.out.println(); 
         } 
     }
-	
+    
+    public void PrintNodeDist() {
+    		out.println(Arrays.toString(NodeDegreeDist()));
+    }
+    
+    private int[] NodeDegreeDist() {
+    	int[] dist = new int[_vertices];
+    	for (int i = 0; i<_vertices; i++) {
+    		int node = adj_list.get(i).size();
+    		dist[i] = node;
+    	}
+    	return dist;
+    }
+    
+    
+    /*
+     * Returns the total components in a graph
+     * A component is defined as a subset in graph
+     */
+    private int[] GraphComponents() {
+    	return int[];
+    }
+    
+    /*
+     * Returns the size distrubution of the components
+     */
+    private int[] GraphComponentsDist() {
+    	return int[];
+    }
 
 
 	
 	public static void main(String[] args) {
 		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/test.txt");
 		graph.printGraph();
+		
+		graph.PrintNodeDist();
 		
 	}
 	
