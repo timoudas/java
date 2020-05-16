@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
+
 import static java.lang.System.out;
 
 
@@ -30,6 +32,8 @@ public class Graph {
 	public Graph(String filename) {
 		ParseData(filename);
 	}
+	
+
 	
 	/*
 	 * @param filename
@@ -123,7 +127,7 @@ public class Graph {
 		adj_list = new ArrayList<ArrayList<Integer>>(_vertices);
 		ArrayList<String> fileIds = LoadIdentifiers(filename);
 		HashMap<String, Integer> ParsedIds = ParseIdentifiers(fileIds);
-		System.out.println(Collections.singletonList(ParsedIds)); // method 2
+		//System.out.println(Collections.singletonList(ParsedIds)); 
 		ArrayList<ArrayList<Integer>> graph = BuildGraph(ParsedIds, filename);
 		return graph;
 	}
@@ -157,24 +161,95 @@ public class Graph {
      * Returns the total components in a graph
      * A component is defined as a subset in graph
      */
-    private int[] GraphComponents() {
-    	return int[];
+
+    public int GraphComponents() { 
+        // Mark all the vertices as not visited 
+        boolean[] visited = new boolean[_vertices]; 
+        int components = 0;
+        for(int v = 0; v < _vertices; ++v) { 
+            if(!visited[v]) { 
+                // print all reachable vertices 
+                // from v 
+            	BFS(v,visited); 
+                components++;
+            } 
+        } 
+        return components;
+    } 
+    
+    private void BFS(int vertex, boolean[] visited) {
+    	//boolean visited[] = new boolean[_vertices];
+        Queue<Integer> queue = new ArrayDeque<>();
+
+        visited[vertex] = true;
+        queue.add(vertex);
+
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+
+            List<Integer> adj = adj_list.get(v);
+            for (Integer w : adj) {
+                if (!visited[w]) {
+                    visited[w] = true;
+                    queue.add(w);
+                }
+            }
+        }
+    }
+    
+    public ArrayList<Integer> GraphComponentsDist() { 
+        // Mark all the vertices as not visited 
+        boolean[] visited = new boolean[_vertices]; 
+        int dist;
+        ArrayList<Integer> compDist = new ArrayList<Integer>();
+        for(int v = 0; v < _vertices; ++v) { 
+            if(!visited[v]) { 
+                // print all reachable vertices 
+                // from v 
+            	dist = BFSdistance(v,visited); 
+            	
+            	compDist.add(dist);
+            } 
+        } 
+        return compDist;
+    } 
+    
+    private int BFSdistance(int vertex, boolean[] visited) {
+    	//boolean visited[] = new boolean[_vertices];
+        Queue<Integer> queue = new ArrayDeque<>();
+        int distance = 0;
+
+        visited[vertex] = true;
+        queue.add(vertex);
+
+        //int Nodistance = 0;
+
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+
+            List<Integer> adj = adj_list.get(v);
+            distance++;
+            for (Integer w : adj) {
+                if (!visited[w]) {
+                    //System.out.println("Distance from vertex: " + vertex + " to: " + w +" is " + length);
+                    visited[w] = true;
+                    queue.add(w);
+                }
+            }
+        }
+        return distance;
     }
     
     /*
      * Returns the size distrubution of the components
      */
-    private int[] GraphComponentsDist() {
-    	return int[];
-    }
-
 
 	
 	public static void main(String[] args) {
-		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/test.txt");
-		graph.printGraph();
+		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/clean.txt");
+		//graph.printGraph();
 		
-		graph.PrintNodeDist();
+		out.println(graph.GraphComponentsDist());
 		
 	}
 	
