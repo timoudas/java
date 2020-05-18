@@ -1,7 +1,11 @@
 package graph;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.*;
 
 
@@ -147,6 +151,10 @@ public class Graph {
     	out.println(Arrays.toString(NodeDegreeDist()));
     }
     
+    public String NodeDist() {
+    	return Arrays.toString(NodeDegreeDist());
+    }
+    
     private int[] NodeDegreeDist() {
     	int[] dist = new int[_vertices];
     	for (int i = 0; i<_vertices; i++) {
@@ -245,11 +253,24 @@ public class Graph {
      */
 
 	
-	public static void main(String[] args) {
-		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/clean.txt");
-		//graph.printGraph();
-		
-		out.println(graph.GraphComponentsDist());
+	public static void main(String[] args) throws IOException {
+		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/test.txt");
+		PrintStream GCDist = new PrintStream(new File("/Users/andreas/eclipse-workspace/Genome/data/GCDist.txt")); 
+        // Assign o to output stream 
+        System.setOut(GCDist); 
+        System.out.println(graph.GraphComponentsDist());
+        
+		PrintStream GCcomp = new PrintStream(new File("/Users/andreas/eclipse-workspace/Genome/data/GCcomp.txt")); 
+        // Assign o to output stream 
+        System.setOut(GCcomp); 
+        System.out.println(graph.GraphComponents());
+        
+		PrintStream NodeDist = new PrintStream(new File("/Users/andreas/eclipse-workspace/Genome/data/NodeDist.txt")); 
+        // Assign o to output stream 
+        System.setOut(NodeDist); 
+        System.out.println(graph.NodeDist());
+
+
 		
 	}
 	
