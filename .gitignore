@@ -4,3 +4,4 @@ RemoteSystemsTempFiles/
 *.m4
 Genome/data/dataset.txt
 Genome/data/uniq.txt
+Genome/output/
