@@ -254,21 +254,29 @@ public class Graph {
 
 	
 	public static void main(String[] args) throws IOException {
+		out.println("Loading file..");
 		Graph graph = new Graph("/Users/andreas/eclipse-workspace/Genome/data/test.txt");
+		out.println("Loading complete");
 		PrintStream GCDist = new PrintStream(new File("/Users/andreas/eclipse-workspace/Genome/data/GCDist.txt")); 
         // Assign o to output stream 
+		out.println("Writing GraphComponentsDist");
         System.setOut(GCDist); 
         System.out.println(graph.GraphComponentsDist());
+        out.println("GraphComponentsDist completed");
         
 		PrintStream GCcomp = new PrintStream(new File("/Users/andreas/eclipse-workspace/Genome/data/GCcomp.txt")); 
         // Assign o to output stream 
+		out.println("Writing GraphComponents");
         System.setOut(GCcomp); 
         System.out.println(graph.GraphComponents());
+        out.println("GraphComponents completed");
         
 		PrintStream NodeDist = new PrintStream(new File("/Users/andreas/eclipse-workspace/Genome/data/NodeDist.txt")); 
         // Assign o to output stream 
+		out.println("Writing NodeDist");
         System.setOut(NodeDist); 
         System.out.println(graph.NodeDist());
+        out.println("NodeDist completed");
 
 
 		
